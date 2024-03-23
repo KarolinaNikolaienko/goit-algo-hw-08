@@ -13,20 +13,16 @@ import heapq
 def connect_cabel(cabels):
     if cabels:
         heapq.heapify(cabels)
-        sum = 0
         while len(cabels) > 1:
             first = heapq.heappop(cabels)
             second = heapq.heappop(cabels)
             print(f"З'єднання кабелів {first} i {second}")
-            sum += first + second
-        last = heapq.heappop(cabels)
-        print(f"Приєднання останнього кабеля {last}")
-        sum += last
-        return sum
+            heapq.heappush(cabels, first+second)
+            print(f"Усі кабелі {cabels}")
+        return cabels[0]
 
 def main():
     cabels = [4, 10, 3, 5, 1]
-    
     print(f"Загальні витрати дорівнюють: {connect_cabel(cabels)}")
 
 if __name__ == "__main__":
